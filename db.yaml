@@ -29,7 +29,7 @@
 
   - name: checking db is installed or not
     community.mysql.mysql_info:
-      login_host: 172.31.80.247
+      login_host: 172.31.93.205
       login_user: "{{ login_user }}"
       login_password: "{{ login_password }}"
       filter: version
