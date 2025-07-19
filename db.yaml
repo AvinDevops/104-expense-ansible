@@ -1,0 +1,19 @@
+- name: configuring db server
+  hosts: db
+  tasks: #list of tasks
+  - name: installing mysql server
+    ansible.builtin.dnf:
+      name: mysql-server
+      state: latest
+  
+  - name: starting and enabling server
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+
+  - name: checking db is installed or not
+    community.mysql.mysql_info:
+      login_host: ip
+      login_user: root
+      login_password: ExpenseApp@1
