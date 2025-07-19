@@ -13,8 +13,21 @@
       state: started
       enabled: yes
 
+  - name: installing python dependencies to connect db
+    ansible.builtin.pip:
+      name:
+      -  PyMySQL
+      - cryptography
+      executable: pip3.9
+
   - name: checking db is installed or not
     community.mysql.mysql_info:
-      login_host: ip
+      login_host: 172.31.80.247
       login_user: root
       login_password: ExpenseApp@1
+      filter: version
+    register: mysql_connect_info
+  
+  - name: print fetched output, whether db connecting or not
+    ansible.builtin.debug:
+      msg: "{{ mysql_connect_info }}"
