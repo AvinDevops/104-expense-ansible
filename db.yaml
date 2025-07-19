@@ -41,5 +41,5 @@
       msg: "{{ mysql_connect_info }}"
 
   - name: setting user and password 
-    ansible.builtin.command: mysql_secure_installation --set-{{ login_user }}-pass {{ login_password }}
+    ansible.builtin.command: "mysql_secure_installation --set-{{ login_user }}-pass {{ login_password }}"
     when: mysql_connect_info.failed is true
