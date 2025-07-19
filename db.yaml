@@ -27,7 +27,7 @@
       login_password: ExpenseApp@1
       filter: version
     register: mysql_connect_info
-    ignore_error: yes
+    ignore_errors: yes
   
   - name: print fetched output, whether db connecting or not
     ansible.builtin.debug:
