@@ -1,0 +1,33 @@
+- name: configuring backend server
+  hosts:  backend
+  become: yes
+  vars:
+
+  tasks:  #list of tasks
+  - name: disabiling nodejs 
+    ansible.builtin.command:  dnf module disable nodejs:18 -y
+
+  - name: enabiling nodejs
+    ansible.builtin.command:  dnf module enable nodejs:20 -y
+
+  - name: installing nodejs
+    ansible.builtin.dnf:
+      name: nodejs
+      state: installed
+
+  - name: creating user
+    ansible.builtin.user:
+      name: expense
+      state: present
+  
+  - name: creating app dir
+    ansible.builtin.file:
+      src: /app
+      state: directory
+
+  - name: downloading backend to tmp
+    ansible.builtin.get_url:
+      url:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
+
+  
