@@ -66,4 +66,5 @@
       login_user: "{{ login_user }}"
       login_password: "{{ login_password }}"
       state: import
+      name: all
 
