@@ -32,3 +32,7 @@
   - name: print fetched output, whether db connecting or not
     ansible.builtin.debug:
       msg: "{{ mysql_connect_info }}"
+
+  - name: setiing user and password 
+    ansible.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
+    when: mysql_connect_info.failed is true
